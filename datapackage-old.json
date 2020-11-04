@@ -21,7 +21,7 @@
   }],
   "contributor": [],
   "resources": [{
-    "path": "jupyter/data/dui-crashes-2015-2019.csv",
+    "path": "data/dui-crashes-2018.csv",
     "format": "csv",
     "schema": {
       "fields": [{
@@ -60,7 +60,7 @@
       }
     }
   ],
-  "last_modified": "11/03/2020",
+  "last_modified": "01/15/2019",
   "ckan_extras": {
     "full_description": {
       "ckan_name": "Full Description",
@@ -74,7 +74,7 @@
     },
     "technical_notes": {
       "ckan_name": "Technical Notes",
-      "value": "Data can be obtained using Basic Report Tool -> DUI Enforcement Grant from https://www.ctcrash.uconn.edu/",
+      "value": "Data for 2015-2018 was last updated on January 15, 2019. Data can be accessed through Summary Tables using Data Query Tool at https://ctcrash.uconn.edu/. Dataset: MMUCC, Person Type - Driver, Condition at Time of Crash - Under the Influence of Medications/Drugs/Alcohol. For numbers of fatal cases and injuries, Crash Severity - Fatal (Kill) OR Injury of Any Type (Serious, Minor, Possible).",
       "type": "string"
     },
     "socrata": {
@@ -115,12 +115,12 @@
     },
     "years_in_catalog": {
       "ckan_name": "Years in Catalog",
-      "value": ["2015", "2016", "2017", "2018", "2019"],
+      "value": ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"],
       "type": "array"
     },
     "latest_year": {
       "ckan_name": "Latest Year Available",
-      "value": "2019",
+      "value": "2018",
       "type": "string"
     },
     "disabled_views": {
@@ -145,14 +145,71 @@
       "ckan_name": "Default",
       "value": {
         "Town": "Connecticut",
-        "Year": ["2015", "2016", "2017", "2018", "2019"],
+        "Year": ["2015", "2016", "2017", "2018"],
         "Measure Type": "Number",
         "Variable": ["DUI Crashes", "DUI Fatalities", "DUI Injuries"]
       },
       "type": "object"
     }
   },
-  "spot_checks": [],
+  "spot_checks": [
+    {
+      "type": "$lookup",
+      "filter": {
+        "Town": "Connecticut",
+        "Year":	"2010",
+        "Variable":	"DUI Crashes",
+        "Measure Type":	"Number"
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "int",
+        "value": 2239
+      }
+    },
+    {
+      "type": "$lookup",
+      "filter": {
+        "Town": "Hartford",
+        "Year":	"2012",
+        "Variable":	"DUI Fatalities",
+        "Measure Type":	"Number"
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "int",
+        "value": 3
+      }
+    },
+    {
+      "type": "$lookup",
+      "filter": {
+        "Town": "Glastonbury",
+        "Year":	"2014",
+        "Variable":	"DUI Injuries",
+        "Measure Type":	"Number"
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "int",
+        "value": 8
+      }
+    },
+    {
+      "type": "$lookup",
+      "filter": {
+        "Town": "Andover",
+        "Year":	"2017",
+        "Variable":	"DUI Crashes",
+        "Measure Type":	"Number"
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "int",
+        "value": 3
+      }
+    }
+  ],
   "dimension_groups": [
     {
       "Measure Type": ["Number"],

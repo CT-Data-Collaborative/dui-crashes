@@ -19,22 +19,22 @@ raw_location <- grep("raw$", sub_folders, value=T)
 path_to_raw_data <- (paste0(getwd(), "/", raw_location))
 data_location <- grep("data$", sub_folders, value=T)
 path_to_data <- (paste0(getwd(), "/", data_location))
-crash_df <-  dir(path_to_raw_data, recursive=T, pattern = "CrashDataDUI_2010-18-Town") 
+crash_df <-  dir(path_to_raw_data, recursive=T, pattern = "CrashDataDUI_2010-19-Town") 
 
 #Bring in each sheet of the file, assign variable accordingly
 paste0(path_to_raw_data, "/", crash_df)
-dui_crashes <- read_excel(paste0(path_to_raw_data, "/", crash_df), sheet=2, skip=0)
+dui_crashes <- read_excel(paste0(path_to_raw_data, "/", crash_df), sheet=1, skip=0)
 dui_crashes$Variable <- "DUI Crashes"
 
-dui_fatalities <- read_excel(paste0(path_to_raw_data, "/", crash_df), sheet=3, skip=0)
+dui_fatalities <- read_excel(paste0(path_to_raw_data, "/", crash_df), sheet=2, skip=0)
 dui_fatalities$Variable <- "DUI Fatalities"
 
-dui_injuries <- read_excel(paste0(path_to_raw_data, "/", crash_df), sheet=4, skip=0)
+dui_injuries <- read_excel(paste0(path_to_raw_data, "/", crash_df), sheet=3, skip=0)
 dui_injuries$Variable <- "DUI Injuries"
 
 #Combine and gather year columns into one
 dui_data <- rbind(dui_crashes, dui_fatalities, dui_injuries)
-dui_data <- gather(dui_data, Year, Value, 2:10, factor_key=F)
+dui_data <- gather(dui_data, Year, Value, 2:11, factor_key=F)
 
 #Create total for CT
 ct_dui_data <- dui_data %>% 
@@ -66,7 +66,7 @@ dui_data_fips <- dui_data_fips %>%
 # Write to File
 write.table(
   dui_data_fips,
-  file.path(getwd(), "data", "dui-crashes-2018.csv"),
+  file.path(getwd(), "data", "dui-crashes-2019.csv"),
   sep = ",",
   row.names = F
 )
