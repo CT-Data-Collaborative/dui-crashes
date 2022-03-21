@@ -17,11 +17,11 @@
   "author":[{
     "name": "Connecticut Data Collaborative",
     "email": "info@ctdata.org",
-    "web": "http://ctdata.org"
+    "web": "https://ctdata.org"
   }],
   "contributor": [],
   "resources": [{
-    "path": "jupyter/data/dui-crashes-2015-2019.csv",
+    "path": "jupyter/data/dui-crashes-2015-2020.csv",
     "format": "csv",
     "schema": {
       "fields": [{
@@ -60,7 +60,7 @@
       }
     }
   ],
-  "last_modified": "11/03/2020",
+  "last_modified": "03/21/2022",
   "ckan_extras": {
     "full_description": {
       "ckan_name": "Full Description",
@@ -115,12 +115,12 @@
     },
     "years_in_catalog": {
       "ckan_name": "Years in Catalog",
-      "value": ["2015", "2016", "2017", "2018", "2019"],
+      "value": ["2015", "2016", "2017", "2018", "2019", "2020"],
       "type": "array"
     },
     "latest_year": {
       "ckan_name": "Latest Year Available",
-      "value": "2019",
+      "value": "2020",
       "type": "string"
     },
     "disabled_views": {
@@ -145,7 +145,7 @@
       "ckan_name": "Default",
       "value": {
         "Town": "Connecticut",
-        "Year": ["2015", "2016", "2017", "2018", "2019"],
+        "Year": ["2015", "2016", "2017", "2018", "2019", "2020"],
         "Measure Type": "Number",
         "Variable": ["DUI Crashes", "DUI Fatalities", "DUI Injuries"]
       },
